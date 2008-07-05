@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT server (jmx,listens,dispatchStrategy?,filters?,services,connectionProvider,property*)>
+<!ATTLIST server type (nio|trade) #REQUIRED>
+<!ELEMENT jmx EMPTY>
+<!ATTLIST jmx
+	enable (true|false) #REQUIRED
+	ip CDATA #IMPLIED
+	port CDATA #IMPLIED
+	type CDATA #IMPLIED
+>
+<!ELEMENT listens (listen+)>
+<!ELEMENT listen EMPTY>
+<!ATTLIST listen
+	ip CDATA #IMPLIED
+	port CDATA #REQUIRED
+	type CDATA #REQUIRED
+>
+
+<!ELEMENT filters (filter*)>
+<!ELEMENT filter (property+)>
+<!ATTLIST filter class CDATA #REQUIRED>
+
+<!ELEMENT service (property+)>
+<!ATTLIST service class CDATA #REQUIRED>
+<!ELEMENT services (service+)>
+
+<!ELEMENT connectionProvider (property+)>
+<!ATTLIST connectionProvider class CDATA #REQUIRED>
+<!ELEMENT dispatchStrategy EMPTY>
+<!ATTLIST dispatchStrategy
+	autoConfig (true|false) #REQUIRED
+	increment CDATA #IMPLIED
+	maxThread CDATA #IMPLIED
+	minThread CDATA #IMPLIED
+	singleThread (true|false) #REQUIRED
+>
+
+
+<!ELEMENT property (#PCDATA)>
+<!ATTLIST property name CDATA #REQUIRED>
